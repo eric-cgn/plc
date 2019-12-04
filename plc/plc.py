@@ -43,7 +43,7 @@ class PLC:
                 self.cts = True
                 continue
             dlen = data[0]
-            self.cts = (dlen & 0x80) == 0x80
+            self.cts = self.cts or ((dlen & 0x80) == 0x80)
             mlen = dlen & 0x1f
             msg_buffer += data[1:mlen+1]
             try:
